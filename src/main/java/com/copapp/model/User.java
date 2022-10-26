@@ -37,6 +37,8 @@ public class User implements UserDetails{
       private String mobileNo;
       private boolean enabled=true;
       private String otp;      
+      @Column(length = 750)
+  	  private String messageSend;
       @CreationTimestamp
       private LocalDateTime createdAt;
       @UpdateTimestamp
@@ -165,6 +167,14 @@ public class User implements UserDetails{
 
 	public void setOtp(String otp) {
 		this.otp = otp;
+	}
+
+	public String getMessageSend() {
+		return messageSend;
+	}
+
+	public void setMessageSend(String messageSend) {
+		this.messageSend = messageSend;
 	}
      
       
