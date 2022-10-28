@@ -27,6 +27,7 @@ public class AdditionalCopServiceImpl implements AdditionalCopService {
 		additionalCopRepository.findById(additionalCop.getAdditionalId()).orElseThrow(()->new ResourceNotFoundException("Additional Cop doesn't exist with an id : "+additionalCop.getAdditionalId()));
 		AdditionalCop i1=this.additionalCopRepository.findById(additionalCop.getAdditionalId()).get();
 		additionalCop.setCreatedAt(i1.getCreatedAt());
+		additionalCop.setMessageSend(i1.getMessageSend());
 		return this.additionalCopRepository.save(additionalCop);
 	}
 

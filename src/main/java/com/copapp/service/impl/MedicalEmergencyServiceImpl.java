@@ -27,6 +27,7 @@ public class MedicalEmergencyServiceImpl implements MedicalEmergencyService{
 		medicalEmergencyRepository.findById(medicalEmergency.getMedicalId()).orElseThrow(()->new ResourceNotFoundException("MedicalEmergency doesn't exist with an id : "+medicalEmergency.getMedicalId()));
 		MedicalEmergency i1=this.medicalEmergencyRepository.findById(medicalEmergency.getMedicalId()).get();
 		medicalEmergency.setCreatedAt(i1.getCreatedAt());
+		medicalEmergency.setMessageSend(i1.getMessageSend());
 		return this.medicalEmergencyRepository.save(medicalEmergency);
 	}
 
