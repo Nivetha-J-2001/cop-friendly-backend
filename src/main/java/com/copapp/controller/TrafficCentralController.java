@@ -38,7 +38,6 @@ public class TrafficCentralController {
     @PostMapping("/trafficcentral/signup") 
     public User createUser(@RequestBody User user) throws Exception{
        
-            user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
             Set<UserRole> roles=new HashSet<>();
             Role role=new Role();
             role.setRoleId(1L);
@@ -50,9 +49,9 @@ public class TrafficCentralController {
 				helper.setTo(user.getEmail());
 				String subject="Login from Cop friendly app";
 				
-				String content = "<p>Hello "+user.getUsername()+",<p>"+
+				String content = "<p>Hello "+user.getUser_name()+",<p>"+
 				"<p>Please find your new auto generated password along with your details</p>"+
-				"<p>User Name: "+user.getUsername()+"</p>"+
+				"<p>User Name: "+user.getUser_name()+"</p>"+
 				"<p>Email: "+user.getEmail()+"</p>"+
 				"<p>Mobile Number: "+user.getMobileNo()+"</p>"+
 				"<p>Password: "+user.getPassword()+"</p>"+
@@ -70,7 +69,8 @@ public class TrafficCentralController {
 			catch(Exception E)
 			{
 				throw new ResourceNotFoundException("Mail can't be send");
-			}			
+			}		
+            user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
             UserRole userRole=new UserRole();
             userRole.setRole(role);
             userRole.setUser(user);

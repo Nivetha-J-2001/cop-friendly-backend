@@ -41,7 +41,7 @@ public class ViolationDetailsController {
 				 MimeMessage mimeMessage=mailSender.createMimeMessage();
 					MimeMessageHelper helper=new MimeMessageHelper(mimeMessage);
 					helper.setFrom("copfriendly@gmail.com","Cop app Support");
-					helper.setTo("nivethajayaraj2001@gmail.com");
+					helper.setTo(ViolationDetails.getMailId());
 					String subject="fine from Cop friendly app";
 					
 					String content = "<p>Hello "+ViolationDetails.getName()+",<p>"+
