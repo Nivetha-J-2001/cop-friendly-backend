@@ -45,8 +45,8 @@ public class ViolationDetailsController {
 					String subject="fine from Cop friendly app";
 					
 					String content = "<p>Hello "+ViolationDetails.getName()+",<p>"+
-					"<p>We have registered the violation on you!</p>"+
-							"<p>Here you can find the violation details below,</p>"+
+					"<p>We have registered violation on you!</p>"+
+							"<p>The violation details are given below,</p>"+
 					"<p>Violation Type : "+ViolationDetails.getViolationType()+"</p>"+
 					"<p>Vehicle Type : "+ViolationDetails.getVehicleType()+"</p>"+
 					"<p>Location : "+ViolationDetails.getLocation()+"</p>"+
