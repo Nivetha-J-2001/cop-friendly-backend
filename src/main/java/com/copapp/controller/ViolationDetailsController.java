@@ -1,9 +1,9 @@
 package com.copapp.controller;
-
 import java.util.Set;
 
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -26,6 +26,7 @@ import com.copapp.service.ViolationDetailsService;
 @RequestMapping("/violationdetails")
 public class ViolationDetailsController {
 	
+	public static final Logger log=Logger.getLogger(ViolationDetailsController.class);
 	@Autowired
 	private ViolationDetailsService violationDetailsService;
 	
@@ -33,36 +34,36 @@ public class ViolationDetailsController {
 	 private JavaMailSender mailSender;
 	 
 	 @PostMapping("/addviolationdetails")
-	 public ViolationDetails addViolationDetails(@RequestBody ViolationDetails ViolationDetails){
+	 public ViolationDetails addViolationDetails(@RequestBody ViolationDetails violationDetails){
 		 
-		 if(ViolationDetails.getFineAmount()>0 && ViolationDetails.getPaymentStatus().equalsIgnoreCase("success"))
+		 if(violationDetails.getFineAmount()>0 && violationDetails.getPaymentStatus().equalsIgnoreCase("success"))
 		 {
 			 try {
 				 MimeMessage mimeMessage=mailSender.createMimeMessage();
 					MimeMessageHelper helper=new MimeMessageHelper(mimeMessage);
 					helper.setFrom("copfriendly@gmail.com","Cop app Support");
-					helper.setTo(ViolationDetails.getMailId());
+					helper.setTo(violationDetails.getMailId());
 					String subject="fine from Cop friendly app";
 					
-					String content = "<p>Hello "+ViolationDetails.getName()+",<p>"+
+					String content = "<p>Hello "+violationDetails.getName()+",<p>"+
 					"<p>We have registered violation on you!</p>"+
 							"<p>The violation details are given below,</p>"+
-					"<p>Violation Type : "+ViolationDetails.getViolationType()+"</p>"+
-					"<p>Vehicle Type : "+ViolationDetails.getVehicleType()+"</p>"+
-					"<p>Location : "+ViolationDetails.getLocation()+"</p>"+
-					"<p>Fine Amount : "+ViolationDetails.getFineAmount()+"</p>"+
-					"<p>Payment Status : "+ViolationDetails.getPaymentStatus()+"</p>"+
-					"<p>Date : "+ViolationDetails.getDate()+"</p>";
+					"<p>Violation Type : "+violationDetails.getViolationType()+"</p>"+
+					"<p>Vehicle Type : "+violationDetails.getVehicleType()+"</p>"+
+					"<p>Location : "+violationDetails.getLocation()+"</p>"+
+					"<p>Fine Amount : "+violationDetails.getFineAmount()+"</p>"+
+					"<p>Payment Status : "+violationDetails.getPaymentStatus()+"</p>"+
+					"<p>Date : "+violationDetails.getDate()+"</p>";
 					
 					
 					helper.setSubject(subject);
 					helper.setText(content, true);
 					
 					mailSender.send(mimeMessage);
-					ViolationDetails.setMessageSend(content);
+					violationDetails.setMessageSend(content);
 
-					System.out.println("Mail send successfully");
-					this.violationDetailsService.addViolationDetails(ViolationDetails);
+					log.info("Mail send successfully");
+					this.violationDetailsService.addViolationDetails(violationDetails);
 				}
 				catch(Exception E)
 				{
@@ -70,7 +71,7 @@ public class ViolationDetailsController {
 				}			
 			 
 		 }
-		 return this.violationDetailsService.addViolationDetails(ViolationDetails);
+		 return this.violationDetailsService.addViolationDetails(violationDetails);
 	 }
 	 
 	 @GetMapping("/{violationId}")
@@ -84,8 +85,8 @@ public class ViolationDetailsController {
 	 }
 	 
 	 @PutMapping("/editviolationdetails")
-	 public ViolationDetails updateViolationDetails(@RequestBody ViolationDetails ViolationDetails) {
-		 return this.violationDetailsService.updateViolationDetails(ViolationDetails);
+	 public ViolationDetails updateViolationDetails(@RequestBody ViolationDetails violationDetails) {
+		 return this.violationDetailsService.updateViolationDetails(violationDetails);
 	 }
 	 
 	 @DeleteMapping("/deleteviolationdetails/{violationId}")
@@ -94,8 +95,7 @@ public class ViolationDetailsController {
 	 }
 	 
 	 @GetMapping("/search/{keyword}")
-	 public Set<ViolationDetails> search(@PathVariable(value = "keyword", required = false)String keyword,ViolationDetails ViolationDetails) {
-		 Set<ViolationDetails> list = this.violationDetailsService.getByLicenceNo(keyword);
-		 return list;	
+	 public Set<ViolationDetails> search(@PathVariable(value = "keyword", required = false)String keyword) {
+		 return this.violationDetailsService.getByLicenceNo(keyword);
 	}
 }

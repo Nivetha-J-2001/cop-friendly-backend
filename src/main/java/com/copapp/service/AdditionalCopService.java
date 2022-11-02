@@ -1,7 +1,6 @@
 package com.copapp.service;
 
 import java.util.Set;
-
 import com.copapp.model.AdditionalCop;
 
 public interface AdditionalCopService {
@@ -10,9 +9,9 @@ public interface AdditionalCopService {
 
 	public AdditionalCop updateAdditionalCop(AdditionalCop additionalCop);
 
-	Set<AdditionalCop> getAllAdditionalCop();
+	public Set<AdditionalCop> getAllAdditionalCop();
 
-	AdditionalCop getAdditionalCop(Long additionalId);
+	public AdditionalCop getAdditionalCop(Long additionalId);
 
 	void deleteAdditionalCop(Long additionalId);
 

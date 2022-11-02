@@ -31,12 +31,4 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
 	}
 
-	// handling global exception
-	
-//	@ExceptionHandler(Exception.class)
-//	public ResponseEntity<?> globalExceptionHandling(Exception exception, WebRequest request){
-//		ErrorDetails errorDetails = 
-//				new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false));
-//		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-//	}
 }

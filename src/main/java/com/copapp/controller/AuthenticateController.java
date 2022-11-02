@@ -43,24 +43,13 @@ public class AuthenticateController {
     
     @Autowired
     private JwtUtils jwtUtils;
-//    public Long signin(@RequestBody User user) throws Exception{
-//    	return this.userService.loginUser(user.getEmail(), user.getPassword());
-//    }
 
     @CrossOrigin("*")
     @PostMapping("/signin")
     public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception{
-        
-//      try {
-          
-          authenticate(jwtRequest.getEmail(), jwtRequest.getPassword());
-//      } catch (Exception e) {
-//          e.printStackTrace();
-//          String exc=e.toString();
-//          throw new ResourceNotFoundException(exc);
-//      }
-     
 
+          
+      authenticate(jwtRequest.getEmail(), jwtRequest.getPassword());
       UserDetails userDetails=this.userDetailsServiceImpl.loadUserByUsername(jwtRequest.getEmail());
       String token = this.jwtUtils.generateToken(userDetails);   
       User user=userService.getUser(jwtRequest.getEmail());

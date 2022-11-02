@@ -1,9 +1,9 @@
 package com.copapp.controller;
-
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.copapp.exception.InvalidCredentialsException;
-import com.copapp.exception.ResourceFoundException;
 import com.copapp.exception.ResourceNotFoundException;
 import com.copapp.model.User;
 import com.copapp.repo.UserRepository;
@@ -26,6 +25,10 @@ import com.copapp.service.UserService;
 @RequestMapping("")
 public class ForgetPasswordController {
 	
+	public static final Logger log=Logger.getLogger(ForgetPasswordController.class);
+	
+	private Random rand = new Random();  // SecureRandom is preferred to Random
+
 	@Autowired
 	private UserService userService;
 		
@@ -40,19 +43,18 @@ public class ForgetPasswordController {
 	{
 		User user=this.userRepository.findUserByEmail(email);
 		if( user != null)
-		{
-			Random random = new Random();  
-			int otp = random.nextInt(999999);
-			System.out.println("OTP : "+otp);
+		{  
+			int otp = rand.nextInt(999999);
+			log.info("OTP : "+otp);
 			try {
 				MimeMessage mimeMessage=mailSender.createMimeMessage();
 				MimeMessageHelper helper=new MimeMessageHelper(mimeMessage);
 				helper.setFrom("copfriendly@gmail.com","Cop app Support");
 				helper.setTo(email);
-				System.out.println("OTP : "+otp);
+				log.info("OTP : "+otp);
 				String subject="OTP from Cop friendly app";
 				
-				String content = "<p>Hello,<p>"+
+				String content = "<p>Hello "+user.getName()+",<p>"+
 				"<p>You have requested to reset your password.</p>"+
 						"<p>Here you find the otp below to change the password:</p>"+
 				"<h1> "+otp+"</h1>"+
@@ -62,7 +64,7 @@ public class ForgetPasswordController {
 				helper.setText(content, true);
 				
 				mailSender.send(mimeMessage);
-				System.out.println("Mail send Successfully");
+				log.info("Mail send Successfully");
 				user.setOtp(Integer.toString(otp));
 				this.userRepository.save(user);
 								
@@ -88,7 +90,7 @@ public class ForgetPasswordController {
 		{
 			user.setOtp("0");
 			this.userRepository.save(user);
-			System.out.println("Verified OTP !!");
+			log.info("Verified OTP !!");
 		}
 		else
 		{

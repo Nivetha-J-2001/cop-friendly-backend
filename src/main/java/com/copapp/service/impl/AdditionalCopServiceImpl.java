@@ -1,6 +1,7 @@
 package com.copapp.service.impl;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.copapp.exception.ResourceNotFoundException;
 import com.copapp.model.AdditionalCop;
-import com.copapp.service.AdditionalCopService;
 import com.copapp.repo.AdditionalCopRepo;
+import com.copapp.service.AdditionalCopService;
 
 @Service 
 public class AdditionalCopServiceImpl implements AdditionalCopService {
@@ -24,10 +25,15 @@ public class AdditionalCopServiceImpl implements AdditionalCopService {
 
 	@Override
 	public AdditionalCop updateAdditionalCop(AdditionalCop additionalCop) {
-		additionalCopRepository.findById(additionalCop.getAdditionalId()).orElseThrow(()->new ResourceNotFoundException("Additional Cop doesn't exist with an id : "+additionalCop.getAdditionalId()));
-		AdditionalCop i1=this.additionalCopRepository.findById(additionalCop.getAdditionalId()).get();
+		Optional<AdditionalCop> additionalCopList=additionalCopRepository.findById(additionalCop.getAdditionalId());
+		if(additionalCopList.isEmpty()) {
+			throw new ResourceNotFoundException("Additional Cop doesn't exist with an id : "+additionalCop.getAdditionalId());
+		}
+		else {
+		AdditionalCop i1=additionalCopList.get();
 		additionalCop.setCreatedAt(i1.getCreatedAt());
 		additionalCop.setMessageSend(i1.getMessageSend());
+		}
 		return this.additionalCopRepository.save(additionalCop);
 	}
 
@@ -38,14 +44,24 @@ public class AdditionalCopServiceImpl implements AdditionalCopService {
 
 	@Override
 	public AdditionalCop getAdditionalCop(Long additionalId) {
-		this.additionalCopRepository.findById(additionalId).orElseThrow(() -> new ResourceNotFoundException("Additional Cop not found here with an id : "+additionalId));
-		return this.additionalCopRepository.findById(additionalId).get();
+		Optional<AdditionalCop> additionalCopList=this.additionalCopRepository.findById(additionalId);
+		if(additionalCopList.isEmpty()) {
+			throw new ResourceNotFoundException("Additional Cop not found here with an id : "+additionalId);
+		}
+		else {
+			return additionalCopList.get();
+		}
 	}
 
 	@Override
 	public void deleteAdditionalCop(Long additionalId) {
-		AdditionalCop local=this.additionalCopRepository.findById(additionalId).orElseThrow(() -> new ResourceNotFoundException("AdditionalCop not found with an id : "+additionalId));
-		this.additionalCopRepository.delete(local);
+		Optional<AdditionalCop> additionalCopList=this.additionalCopRepository.findById(additionalId);
+		if(additionalCopList.isEmpty()) {
+			throw new ResourceNotFoundException("Additional Cop not found here with an id : "+additionalId);
+		}
+		else {
+			this.additionalCopRepository.delete(additionalCopList.get());
+		}
 	}
 
 	@Override

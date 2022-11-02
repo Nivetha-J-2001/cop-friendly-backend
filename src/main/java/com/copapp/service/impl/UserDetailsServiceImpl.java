@@ -21,10 +21,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     public UserDetails loadUserByUsername(String email) {
         
         User user=this.userRepository.findUserByEmail(email);
-        
-       if(user==null)throw new ResourceNotFoundException("Email not found !!");
-       
-        return user;
+       if(user!=null){
+    	   return user;
+       }else {
+    	   throw new ResourceNotFoundException("Email not found !!");
+       }
     }
     
 }

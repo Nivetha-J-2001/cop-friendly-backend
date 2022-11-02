@@ -1,0 +1,49 @@
+INFO    2022-11-01 15:07:38,759 [http-nio-8080-exec-6] com.copapp.controller.AdditionalCopController  - Mail send successfully
+ERROR   2022-11-01 19:01:17,723 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:01:17,724 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:01:17,731 [http-nio-8080-exec-2] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:01:17,731 [http-nio-8080-exec-2] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:03:12,797 [http-nio-8080-exec-5] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:03:12,798 [http-nio-8080-exec-5] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+INFO    2022-11-01 19:04:38,555 [http-nio-8080-exec-9] com.copapp.controller.ViolationDetailsController  - Mail send successfully
+ERROR   2022-11-01 19:05:56,980 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:05:56,980 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+INFO    2022-11-01 19:06:00,866 [http-nio-8080-exec-2] com.copapp.controller.AdditionalCopController  - Mail send successfully
+ERROR   2022-11-01 19:25:30,992 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:25:31,013 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+INFO    2022-11-01 19:25:37,530 [http-nio-8080-exec-2] com.copapp.controller.MedicalEmergencyController  - Mail send successfully
+ERROR   2022-11-01 19:26:33,470 [http-nio-8080-exec-3] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:26:33,470 [http-nio-8080-exec-3] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:26:37,553 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:26:37,553 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:26:37,554 [http-nio-8080-exec-5] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:26:37,554 [http-nio-8080-exec-5] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:26:44,713 [http-nio-8080-exec-8] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:26:44,713 [http-nio-8080-exec-8] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:26:44,716 [http-nio-8080-exec-10] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:26:44,716 [http-nio-8080-exec-10] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:26:52,022 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:26:52,022 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:27:10,735 [http-nio-8080-exec-7] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:27:10,736 [http-nio-8080-exec-7] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:27:10,737 [http-nio-8080-exec-8] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:27:10,737 [http-nio-8080-exec-8] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:27:31,268 [http-nio-8080-exec-3] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:27:31,268 [http-nio-8080-exec-3] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:30:01,223 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:30:01,224 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:30:25,297 [http-nio-8080-exec-10] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:30:25,297 [http-nio-8080-exec-10] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 19:44:40,477 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 19:44:40,478 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+INFO    2022-11-01 19:44:45,012 [http-nio-8080-exec-5] com.copapp.controller.TrafficCopController  - Mail send Successfully
+INFO    2022-11-01 19:44:45,125 [http-nio-8080-exec-5] com.copapp.controller.TrafficCopController  - send
+INFO    2022-11-01 19:54:39,063 [http-nio-8080-exec-1] com.copapp.controller.TrafficCopController  - Mail send Successfully
+INFO    2022-11-01 19:54:39,157 [http-nio-8080-exec-1] com.copapp.controller.TrafficCopController  - send
+ERROR   2022-11-01 20:02:58,027 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 20:02:58,028 [http-nio-8080-exec-1] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 20:02:58,030 [http-nio-8080-exec-2] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 20:02:58,030 [http-nio-8080-exec-2] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+ERROR   2022-11-01 20:05:53,839 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token, does not start with Bearer string
+ERROR   2022-11-01 20:05:53,839 [http-nio-8080-exec-4] com.copapp.configure.JwtAuthenticationFilter  - Invalid Token
+INFO    2022-11-01 20:06:00,468 [http-nio-8080-exec-5] com.copapp.controller.AdditionalCopController  - Mail send successfully

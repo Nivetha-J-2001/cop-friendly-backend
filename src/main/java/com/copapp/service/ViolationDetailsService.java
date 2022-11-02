@@ -1,14 +1,12 @@
 package com.copapp.service;
-
 import java.util.Set;
-
 import com.copapp.model.ViolationDetails;
 
 public interface ViolationDetailsService {
 
-	public ViolationDetails addViolationDetails(ViolationDetails ViolationDetails);
+	public ViolationDetails addViolationDetails(ViolationDetails violationDetails);
 
-	public ViolationDetails updateViolationDetails(ViolationDetails ViolationDetails);
+	public ViolationDetails updateViolationDetails(ViolationDetails violationDetails);
 
 	public Set<ViolationDetails> getAllViolationDetails();
 

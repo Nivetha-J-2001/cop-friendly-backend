@@ -30,7 +30,7 @@ public class User implements UserDetails{
 	@Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       private Long id;
-      private String username;
+      private String name;
       private String password;
       @Column(unique=true)	
       private String email;
@@ -44,7 +44,7 @@ public class User implements UserDetails{
       @UpdateTimestamp
       private LocalDateTime updatedAt; 
     
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+      @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
       @JsonIgnore
       private Set<UserRole> userRoles=new HashSet<>(); 
      
@@ -55,7 +55,7 @@ public class User implements UserDetails{
 
       public User(Long id, String username, String password, String email, boolean enabled) {
             this.id = id;
-            this.username = username;
+            this.name = username;
             this.password = password;
             this.email = email;
             this.enabled = enabled;
@@ -64,9 +64,9 @@ public class User implements UserDetails{
       @Override
       public Collection<? extends GrantedAuthority> getAuthorities() {
           Set<SimpleGrantedAuthority> set=new HashSet<>();
-          this.userRoles.forEach(userRole -> {
-                set.add(new SimpleGrantedAuthority(userRole.getRole().getRoleName()));
-          });
+          this.userRoles.forEach(userRole ->
+                set.add(new SimpleGrantedAuthority(userRole.getRole().getRoleName()))
+          );
           return set;
     }
 
@@ -97,9 +97,6 @@ public class User implements UserDetails{
             return email;
       }
 
-      public void setUsername(String username) {
-            this.username = username;
-      }
 
       public String getPassword() {
             return password;
@@ -109,9 +106,6 @@ public class User implements UserDetails{
             this.password = password;
       }
 
-      public String getEmail() {
-            return email;
-      }
 
       public void setEmail(String email) {
             this.email = email;
@@ -140,11 +134,16 @@ public class User implements UserDetails{
       public void setMobileNo(String mobileNo) {
             this.mobileNo = mobileNo;
       }
-      public String getUser_name(){
-            return username;
-      }
+      
+	public String getName() {
+		return name;
+	}
 
-	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}

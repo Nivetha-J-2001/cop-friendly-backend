@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +20,9 @@ import com.copapp.service.impl.UserDetailsServiceImpl;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
-
+	
+	public static final Logger log=Logger.getLogger(JwtAuthenticationFilter.class);
+	
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
    
@@ -44,11 +47,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                
            } catch (Exception e) {
                e.printStackTrace();
-               System.out.println("Token Expired");
+               log.error("Token Expired");
            }
        }
        else{
-           System.out.println("Invalid Token, does not start with Bearer string");
+    	   log.error("Invalid Token, does not start with Bearer string");
        }
 
        if(email!=null && SecurityContextHolder.getContext().getAuthentication()==null){
@@ -60,7 +63,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
            }
         }
         else{
-            System.out.println("Invalid Token");
+        	log.error("Invalid Token");
         }
         filterChain.doFilter(request, response);
     }

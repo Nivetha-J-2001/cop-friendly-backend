@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -25,7 +26,7 @@ import com.copapp.service.AdditionalCopService;
 @CrossOrigin("*")
 @RequestMapping("/additionalcop")
 public class AdditionalCopController {
-	
+	public static final Logger log=Logger.getLogger(AdditionalCopController.class);
 	@Autowired
 	private AdditionalCopService additionalCopService;
 	@Autowired
@@ -41,13 +42,14 @@ public class AdditionalCopController {
 				helper.setTo("nivethajayaraj2001@gmail.com");
 				String subject="Emergency from Cop friendly app";
 				
-				String content = "<p>Hello,<p>"+
+				String content = "<p>Hello Team,<p>"+
 				"<p>We have requested to send the cop team to the location.</p>"+
 						"<p>Here you find the location and no of peeople required</p>"+
-				"<h1> "+"Location : <i>"+additionalCop1.getLocation()+"</i></h1>"+
-				"<h1> "+"No of people Required : <i>"+additionalCop1.getNoOfRequired()+"</i></h1>"+
-				"<h1> "+"Contact : <i>"+additionalCop1.getPhoneNumber()+"</i></h1>"+
-				"<h1> "+"Priority : <i>"+additionalCop1.getPriority()+"</i></h1>";
+				"<h1><p> "+"Location :"+additionalCop1.getLocation()+"</p>"+
+				"<p>No of people Required : "+additionalCop1.getNoOfRequired()+"</p>"+
+				"<p>Name : "+additionalCop1.getName()+"</p>"+
+				"<p>Contact : "+additionalCop1.getPhoneNumber()+"</p>"+
+				"<p>Priority : "+additionalCop1.getPriority()+"</p>"+"</h1>";
 				
 				helper.setSubject(subject);
 				helper.setText(content, true);
@@ -55,7 +57,7 @@ public class AdditionalCopController {
 				mailSender.send(mimeMessage);
 				additionalCop1.setMessageSend(content);
 
-				System.out.println("Mail send successfully");
+				log.info("Mail send successfully");
 				return this.additionalCopService.addAdditionalCop(additionalCop1);
 			}
 			catch(Exception E)

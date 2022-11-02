@@ -7,13 +7,12 @@ import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,9 @@ import com.copapp.service.UserService;
 @RestController
 @RequestMapping("")
 public class MedicalController {
-
+	
+	public static final Logger log=Logger.getLogger(MedicalController.class);
+	
     @PersistenceContext
     private EntityManager entityManager;
     
@@ -54,13 +55,13 @@ public class MedicalController {
 			MimeMessage mimeMessage=mailSender.createMimeMessage();
 			MimeMessageHelper helper=new MimeMessageHelper(mimeMessage);
 			helper.setFrom("copfriendly@gmail.com","Cop app Support");
-			helper.setTo(user.getEmail());
+			helper.setTo(user.getUsername());
 			String subject="Login from Cop friendly app";
 			
-			String content = "<p>Hello "+user.getUser_name()+",<p>"+
+			String content = "<p>Hello "+user.getName()+",<p>"+
 			"<p>Please find your new auto generated password along with your details</p>"+
-			"<p>User Name: "+user.getUser_name()+"</p>"+
-			"<p>Email: "+user.getEmail()+"</p>"+
+			"<p>User Name: "+user.getName()+"</p>"+
+			"<p>Email: "+user.getUsername()+"</p>"+
 			"<p>Mobile Number: "+user.getMobileNo()+"</p>"+
 			"<p>Password: "+user.getPassword()+"</p>"+
 			"<p>**If there is any correction, please contact the central team**</p>"+
@@ -71,7 +72,7 @@ public class MedicalController {
 			helper.setText(content, true);
 			
 			mailSender.send(mimeMessage);
-			System.out.println("Mail send Successfully");
+			log.info("Mail send Successfully");
 			user.setMessageSend(content);
 							
 		}

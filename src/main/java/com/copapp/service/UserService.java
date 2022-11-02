@@ -1,8 +1,6 @@
 package com.copapp.service;
 
 import java.util.Set;
-
-import com.copapp.model.Role;
 import com.copapp.model.User;
 import com.copapp.model.UserRole;
 
@@ -14,7 +12,5 @@ public interface UserService {
     
     public void updatePassword(String email, String newPassword);
 
-//	public Long loginUser(String email, String password);
-//   
 
 }

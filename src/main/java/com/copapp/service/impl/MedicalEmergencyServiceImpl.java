@@ -1,6 +1,7 @@
 package com.copapp.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,15 @@ public class MedicalEmergencyServiceImpl implements MedicalEmergencyService{
 
 	@Override
 	public MedicalEmergency updateMedicalEmergency(MedicalEmergency medicalEmergency) {
-		medicalEmergencyRepository.findById(medicalEmergency.getMedicalId()).orElseThrow(()->new ResourceNotFoundException("MedicalEmergency doesn't exist with an id : "+medicalEmergency.getMedicalId()));
-		MedicalEmergency i1=this.medicalEmergencyRepository.findById(medicalEmergency.getMedicalId()).get();
-		medicalEmergency.setCreatedAt(i1.getCreatedAt());
-		medicalEmergency.setMessageSend(i1.getMessageSend());
+		Optional<MedicalEmergency> medicalEmergencyList=this.medicalEmergencyRepository.findById(medicalEmergency.getMedicalId());
+		if(medicalEmergencyList.isEmpty()) {
+			throw new ResourceNotFoundException("MedicalEmergency doesn't exist with an id : "+medicalEmergency.getMedicalId());
+		}
+		else {
+			MedicalEmergency i1=medicalEmergencyList.get();
+			medicalEmergency.setCreatedAt(i1.getCreatedAt());
+			medicalEmergency.setMessageSend(i1.getMessageSend());
+		}
 		return this.medicalEmergencyRepository.save(medicalEmergency);
 	}
 
@@ -38,14 +44,24 @@ public class MedicalEmergencyServiceImpl implements MedicalEmergencyService{
 
 	@Override
 	public MedicalEmergency getMedicalEmergency(Long medicalId) {
-		this.medicalEmergencyRepository.findById(medicalId).orElseThrow(() -> new ResourceNotFoundException("MedicalEmergency not found here with an id : "+medicalId));
-		return this.medicalEmergencyRepository.findById(medicalId).get();
+		Optional<MedicalEmergency> medicalEmergencyList=this.medicalEmergencyRepository.findById(medicalId);
+		if(medicalEmergencyList.isEmpty()) {
+			throw new ResourceNotFoundException("MedicalEmergency not found here with an id : "+medicalId);
+		}
+		else {
+			return medicalEmergencyList.get();
+		}
 	}
 
 	@Override
 	public void deleteMedicalEmergency(Long medicalId) {
-		MedicalEmergency local=this.medicalEmergencyRepository.findById(medicalId).orElseThrow(() -> new ResourceNotFoundException("MedicalEmergency not found with an id : "+medicalId));
-		this.medicalEmergencyRepository.delete(local);
+		Optional<MedicalEmergency> medicalEmergencyList=this.medicalEmergencyRepository.findById(medicalId);
+		if(medicalEmergencyList.isEmpty()) {
+			throw new ResourceNotFoundException("MedicalEmergency not found with an id : "+medicalId);
+		}
+		else {
+			this.medicalEmergencyRepository.delete(medicalEmergencyList.get());
+		}
 	}
 
 	@Override

@@ -6,19 +6,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.CONFLICT)
 public class ResourceFoundException extends RuntimeException{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	public long id;
-	public ResourceFoundException(String message) {
-		super(message);
-	}
+	public final long id;
 
 	public ResourceFoundException(String message, long userId) {
 		super(message);
 		this.id=userId;
 		
 	}
+	public ResourceFoundException(String message) {
+		super(message);
+		this.id = 0;
+	}
+
 }
 	

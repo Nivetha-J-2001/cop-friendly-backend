@@ -1,10 +1,10 @@
 package com.copapp.controller;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -28,6 +28,7 @@ import com.copapp.service.MedicalEmergencyService;
 @RequestMapping("/medicalemergency")
 public class MedicalEmergencyController {
 	
+	public static final Logger log=Logger.getLogger(MedicalEmergencyController.class);
 	@Autowired
 	private MedicalEmergencyService medicalEmergencyService;
 	
@@ -35,7 +36,7 @@ public class MedicalEmergencyController {
 	 private JavaMailSender mailSender;
 	 	
 	 @PostMapping("/addmedicalemergency")
-	 public MedicalEmergency addMedicalEmergency(@RequestBody MedicalEmergency MedicalEmergency){
+	 public MedicalEmergency addMedicalEmergency(@RequestBody MedicalEmergency medicalEmergency){
 		 try {
 				MimeMessage mimeMessage=mailSender.createMimeMessage();
 				MimeMessageHelper helper=new MimeMessageHelper(mimeMessage);
@@ -43,22 +44,23 @@ public class MedicalEmergencyController {
 				helper.setTo("nivethajayaraj2001@gmail.com");
 				String subject="Emergency from Cop friendly app";
 				
-				String content = "<p>Hello,<p>"+
+				String content = "<p>Hello Team,<p>"+
 				"<p>We have requested to send the medical team to the location.</p>"+
 						"<p>Here you find the location and no of peeople affected</p>"+
-				"<h1> "+"Location : <i>"+MedicalEmergency.getLocation()+"</i></h1>"+
-				"<h1> "+"No of people Affected : <i>"+MedicalEmergency.getNoOfAffected()+"</i></h1>"+
-				"<h1> "+"Contact : <i>"+MedicalEmergency.getPhoneNumber()+"</i></h1>"+
-				"<h1> "+"Priority : <i>"+MedicalEmergency.getPriority()+"</i></h1>";;
+				"<h1><p> "+"Location : "+medicalEmergency.getLocation()+"</p>"+
+				"<p>No of people Affected : "+medicalEmergency.getNoOfAffected()+"</p>"+
+				"<p>Name : "+medicalEmergency.getName()+"</p>"+
+				"<p>Contact : "+medicalEmergency.getPhoneNumber()+"</p>"+
+				"<p>Priority : "+medicalEmergency.getPriority()+"</p>"+"</h1>";
 				
 				helper.setSubject(subject);
 				helper.setText(content, true);
 				
 				mailSender.send(mimeMessage);
-				MedicalEmergency.setMessageSend(content);
+				medicalEmergency.setMessageSend(content);
 
-				System.out.println("Mail send successfully");
-				return this.medicalEmergencyService.addMedicalEmergency(MedicalEmergency);
+				log.info("Mail send successfully");
+				return this.medicalEmergencyService.addMedicalEmergency(medicalEmergency);
 			}
 			catch(Exception E)
 			{
