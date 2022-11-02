@@ -24,7 +24,7 @@ import com.copapp.service.AdditionalCopService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/additionalcop")
+@RequestMapping("")
 public class AdditionalCopController {
 	public static final Logger log=Logger.getLogger(AdditionalCopController.class);
 	@Autowired
@@ -32,7 +32,7 @@ public class AdditionalCopController {
 	@Autowired
 	 private JavaMailSender mailSender;
 	 	
-	 @PostMapping("/addadditionalcop")
+	 @PostMapping("/additionalcop")
 	 public AdditionalCop addAdditionalCop(@RequestBody AdditionalCop additionalCop){
 		 AdditionalCop additionalCop1=additionalCop;
 		 try {
@@ -66,28 +66,28 @@ public class AdditionalCopController {
 			}
 	 }
 	 
-	 @GetMapping("/{additionalId}")
+	 @GetMapping("/additionalcop/{additionalId}")
 	 public AdditionalCop getAdditionalCop(@PathVariable("additionalId")Long additionalId) {
 		 return this.additionalCopService.getAdditionalCop(additionalId);
 	 }
 	 
-	 @GetMapping("/viewadditionalcop")
+	 @GetMapping("/additionalcops")
 	 public Set<AdditionalCop> getAdditionalCop(){
 		 return this.additionalCopService.getAllAdditionalCop();
 	 }
 	 
-	 @PutMapping("/editadditionalcop")
+	 @PutMapping("/additionalcops/additionalcop")
 	 public AdditionalCop updateAdditionalCop(@RequestBody AdditionalCop additionalCop) {
 		 return this.additionalCopService.updateAdditionalCop(additionalCop);
 		 
 	 }
 	 
-	 @DeleteMapping("/deleteadditionalcop/{additionalId}")
+	 @DeleteMapping("/additionalcops/additionalcop/{additionalId}")
 	 public void deleteAdditionalCop(@PathVariable("additionalId")Long additionalId) {
 		 this.additionalCopService.deleteAdditionalCop(additionalId);
 	 }
 	 
-	 @GetMapping("/search/{keyword}")
+	 @GetMapping("/additionalcops/{keyword}")
 	 public Set<AdditionalCop> search(@PathVariable(value = "keyword")String keyword) {
 		   return this.additionalCopService.getByStatus(keyword);
 	 }

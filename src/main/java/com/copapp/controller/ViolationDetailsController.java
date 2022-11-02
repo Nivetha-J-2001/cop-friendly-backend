@@ -23,7 +23,7 @@ import com.copapp.service.ViolationDetailsService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/violationdetails")
+@RequestMapping("")
 public class ViolationDetailsController {
 	
 	public static final Logger log=Logger.getLogger(ViolationDetailsController.class);
@@ -33,7 +33,7 @@ public class ViolationDetailsController {
 	@Autowired
 	 private JavaMailSender mailSender;
 	 
-	 @PostMapping("/addviolationdetails")
+	 @PostMapping("/violationdetail")
 	 public ViolationDetails addViolationDetails(@RequestBody ViolationDetails violationDetails){
 		 
 		 if(violationDetails.getFineAmount()>0 && violationDetails.getPaymentStatus().equalsIgnoreCase("success"))
@@ -74,27 +74,27 @@ public class ViolationDetailsController {
 		 return this.violationDetailsService.addViolationDetails(violationDetails);
 	 }
 	 
-	 @GetMapping("/{violationId}")
+	 @GetMapping("/violationdetail/{violationId}")
 	 public ViolationDetails getViolationDetails(@PathVariable("violationId")Long violationId) {
 		 return this.violationDetailsService.getViolationDetails(violationId);
 	 }
 	 
-	 @GetMapping("/viewviolationdetails")
+	 @GetMapping("/violationdetails")
 	 public Set<ViolationDetails> getViolationDetailss(){
 		 return this.violationDetailsService.getAllViolationDetails();
 	 }
 	 
-	 @PutMapping("/editviolationdetails")
+	 @PutMapping("/violationdetails/violationdetail")
 	 public ViolationDetails updateViolationDetails(@RequestBody ViolationDetails violationDetails) {
 		 return this.violationDetailsService.updateViolationDetails(violationDetails);
 	 }
 	 
-	 @DeleteMapping("/deleteviolationdetails/{violationId}")
+	 @DeleteMapping("/violationdetails/violationdetail/{violationId}")
 	 public void deleteViolationDetails(@PathVariable("violationId")Long violationId) {
 		 this.violationDetailsService.deleteViolationDetails(violationId);
 	 }
 	 
-	 @GetMapping("/search/{keyword}")
+	 @GetMapping("/violationdetails/{keyword}")
 	 public Set<ViolationDetails> search(@PathVariable(value = "keyword", required = false)String keyword) {
 		 return this.violationDetailsService.getByLicenceNo(keyword);
 	}

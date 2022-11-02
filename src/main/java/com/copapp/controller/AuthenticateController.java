@@ -28,7 +28,7 @@ import com.copapp.service.impl.UserDetailsServiceImpl;
 
 
 @CrossOrigin("*")
-@RequestMapping("/role")
+@RequestMapping("")
 @RestController
 public class AuthenticateController {
     

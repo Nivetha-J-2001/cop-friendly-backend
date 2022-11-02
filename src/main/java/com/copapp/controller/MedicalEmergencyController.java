@@ -25,7 +25,7 @@ import com.copapp.service.MedicalEmergencyService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/medicalemergency")
+@RequestMapping("")
 public class MedicalEmergencyController {
 	
 	public static final Logger log=Logger.getLogger(MedicalEmergencyController.class);
@@ -35,7 +35,7 @@ public class MedicalEmergencyController {
 	@Autowired
 	 private JavaMailSender mailSender;
 	 	
-	 @PostMapping("/addmedicalemergency")
+	 @PostMapping("/medicalemergency")
 	 public MedicalEmergency addMedicalEmergency(@RequestBody MedicalEmergency medicalEmergency){
 		 try {
 				MimeMessage mimeMessage=mailSender.createMimeMessage();
@@ -69,28 +69,28 @@ public class MedicalEmergencyController {
 		 
 	 }
 	 
-	 @GetMapping("/{medicalId}")
+	 @GetMapping("/medicalemergencies/{medicalId}")
 	 public MedicalEmergency getMedicalEmergency(@PathVariable("medicalId")Long medicalId) {
 		 return this.medicalEmergencyService.getMedicalEmergency(medicalId);
 	 }
 	 
-	 @GetMapping("/viewmedicalemergencies")
+	 @GetMapping("/medicalemergencies")
 	 public List<MedicalEmergency> getMedicalEmergencys(){
 		 return this.medicalEmergencyService.getAllMedicalEmergency();
 	 }
 	 
-	 @PutMapping("/editmedicalemergency")
+	 @PutMapping("/medicalemergencies/medicalemergency")
 	 public MedicalEmergency updateMedicalEmergency(@RequestBody MedicalEmergency medicalEmergency) {
 		 
 		 return this.medicalEmergencyService.updateMedicalEmergency(medicalEmergency);
 	 }
 	 
-	 @DeleteMapping("/deletemedicalemergency/{medicalId}")
+	 @DeleteMapping("/medicalemergencies/medicalemergency/{medicalId}")
 	 public void deleteMedicalEmergency(@PathVariable("medicalId")Long medicalId) {
 		 this.medicalEmergencyService.deleteMedicalEmergency(medicalId);
 	 }
 	 
-	 @GetMapping("/search/{keyword}")
+	 @GetMapping("/medicalemergencies/{keyword}")
 	 public List<MedicalEmergency> search(@PathVariable(value = "keyword")String keyword) {
 		   return this.medicalEmergencyService.getByStatus(keyword);
 	 }
