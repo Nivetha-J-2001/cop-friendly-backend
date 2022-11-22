@@ -72,7 +72,7 @@ public class AdditionalCopController {
 	 }
 	 
 	 @GetMapping("/additionalcops")
-	 public Set<AdditionalCop> getAdditionalCop(){
+	 public Set<AdditionalCop> getAllAdditionalCop(){
 		 return this.additionalCopService.getAllAdditionalCop();
 	 }
 	 

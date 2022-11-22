@@ -56,7 +56,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         .cors()
         .disable()
         .authorizeRequests()
-        .antMatchers("/signin","/forgetpassword/{email}","/verifyotp/{email}/{otp}","/resetpassword/{email}/{password}","/email/{email}").permitAll()
+        .antMatchers("/signin","/forgetpassword/{email}","/verifyotp/{email}/{otp}",
+        		"/resetpassword/{email}/{password}","/email/{email}").permitAll()
 //        .antMatchers("/**").permitAll()
         .antMatchers(HttpMethod.OPTIONS).permitAll()
         .anyRequest().authenticated()

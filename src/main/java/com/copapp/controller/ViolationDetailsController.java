@@ -1,4 +1,5 @@
 package com.copapp.controller;
+import java.util.List;
 import java.util.Set;
 
 import javax.mail.internet.MimeMessage;
@@ -80,7 +81,7 @@ public class ViolationDetailsController {
 	 }
 	 
 	 @GetMapping("/violationdetails")
-	 public Set<ViolationDetails> getViolationDetailss(){
+	 public List<ViolationDetails> getAllViolationDetails(){
 		 return this.violationDetailsService.getAllViolationDetails();
 	 }
 	 

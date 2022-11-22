@@ -124,6 +124,22 @@ public class MedicalEmergency {
 	public void setMessageSend(String messageSend) {
 		this.messageSend = messageSend;
 	}
+
+	public MedicalEmergency() {
+		super();
+	}
+
+	public MedicalEmergency(long medicalId, long noOfAffected, String status, String name, String phoneNumber,
+			String location, String priority) {
+		super();
+		this.medicalId = medicalId;
+		this.noOfAffected = noOfAffected;
+		this.status = status;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.location = location;
+		this.priority = priority;
+	}
     
     
 

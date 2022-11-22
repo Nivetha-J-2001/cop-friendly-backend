@@ -1,4 +1,5 @@
 package com.copapp.service;
+import java.util.List;
 import java.util.Set;
 import com.copapp.model.ViolationDetails;
 
@@ -8,7 +9,7 @@ public interface ViolationDetailsService {
 
 	public ViolationDetails updateViolationDetails(ViolationDetails violationDetails);
 
-	public Set<ViolationDetails> getAllViolationDetails();
+	public List<ViolationDetails> getAllViolationDetails();
 
 	public ViolationDetails getViolationDetails(Long violationId);
 

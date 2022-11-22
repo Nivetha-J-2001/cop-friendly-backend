@@ -124,6 +124,21 @@ public class AdditionalCop {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public AdditionalCop() {
+	}
+
+	public AdditionalCop(long additionalId, long noOfRequired, String status, String name, String phoneNumber,
+			String location, String priority) {
+		super();
+		this.additionalId = additionalId;
+		this.noOfRequired = noOfRequired;
+		this.status = status;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.location = location;
+		this.priority = priority;
+	}
     
     
 }

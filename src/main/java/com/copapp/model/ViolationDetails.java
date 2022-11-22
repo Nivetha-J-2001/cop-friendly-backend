@@ -37,6 +37,29 @@ public class ViolationDetails {
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
+	public ViolationDetails() {
+		super();
+	}
+
+	public ViolationDetails(long violationId, String name, String licenceNo, String violationType, String vehicleType,
+			String location, String mailId, String mobileNumber, String date, String time, Long fineAmount,
+			String paymentType, String paymentStatus) {
+		super();
+		this.violationId = violationId;
+		this.name = name;
+		this.licenceNo = licenceNo;
+		this.violationType = violationType;
+		this.vehicleType = vehicleType;
+		this.location = location;
+		this.mailId = mailId;
+		this.mobileNumber = mobileNumber;
+		this.date = date;
+		this.time = time;
+		this.fineAmount = fineAmount;
+		this.paymentType = paymentType;
+		this.paymentStatus = paymentStatus;
+	}
+
 	public long getViolationId() {
 		return violationId;
 	}
@@ -172,7 +195,6 @@ public class ViolationDetails {
 	public void setMessageSend(String messageSend) {
 		this.messageSend = messageSend;
 	}
-
-    
+   
 
 }

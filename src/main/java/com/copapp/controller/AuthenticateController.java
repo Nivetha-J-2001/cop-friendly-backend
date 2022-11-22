@@ -1,6 +1,5 @@
 package com.copapp.controller;
 
-
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ import com.copapp.model.JwtResponse;
 import com.copapp.model.User;
 import com.copapp.service.UserService;
 import com.copapp.service.impl.UserDetailsServiceImpl;
-
 
 @CrossOrigin("*")
 @RequestMapping("")

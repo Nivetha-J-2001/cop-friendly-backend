@@ -1,5 +1,6 @@
 package com.copapp.repo;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,5 +12,6 @@ public interface ViolationDetailsRepo extends JpaRepository<ViolationDetails,Lon
 
 	@Query(value = "select * from violation_details where licence_no like CONCAT('%',:keyword, '%')", nativeQuery = true)
 	public Set<ViolationDetails> findByLicenceNo(String keyword);
+	public List<ViolationDetails> findAll();
 
 }

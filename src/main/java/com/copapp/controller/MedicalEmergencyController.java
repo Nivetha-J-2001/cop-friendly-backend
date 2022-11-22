@@ -75,7 +75,7 @@ public class MedicalEmergencyController {
 	 }
 	 
 	 @GetMapping("/medicalemergencies")
-	 public List<MedicalEmergency> getMedicalEmergencys(){
+	 public List<MedicalEmergency> getAllMedicalEmergency(){
 		 return this.medicalEmergencyService.getAllMedicalEmergency();
 	 }
 	 
